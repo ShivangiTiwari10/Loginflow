@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LoginFlow</string>
+    <string name ="top_txt">Hey there</string>
+    <string name="heading">Create an Account</string>
 </resources>
