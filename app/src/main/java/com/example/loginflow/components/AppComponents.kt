@@ -21,10 +21,10 @@ fun NormalTextComponent(value: String) {
         text = value,
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 80.dp),
+            .heightIn(min = 40.dp),
 
         style = TextStyle(
-            fontSize = 18.sp,
+            fontSize = 24.sp,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Normal,
@@ -44,7 +44,7 @@ fun HeadingTextComponent(value: String) {
         text = value,
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 80.dp),
+            .heightIn(),
 
         style = TextStyle(
             fontSize = 30.sp,
