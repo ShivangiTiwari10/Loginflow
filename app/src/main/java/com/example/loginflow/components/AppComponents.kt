@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.sp
 import com.example.loginflow.R
 import com.example.loginflow.componentShape
 import com.example.loginflow.ui.theme.Primary
-import com.example.loginflow.ui.theme.Secondary
 import com.example.loginflow.ui.theme.TextColor
 
 @Composable
