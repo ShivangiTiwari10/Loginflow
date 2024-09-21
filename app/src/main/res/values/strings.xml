@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">LoginFlow</string>
-    <string name ="top_txt">Hey there</string>
+    <string name ="top_txt">Hey there,</string>
     <string name="heading">Create an Account</string>
+    <string name="description">By contributing you accept our Privacy Policy and Term of Use </string>
+    <string name="last_text">Already have an account? Login</string>
 </resources>
