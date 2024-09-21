@@ -37,3 +37,26 @@ fun NormalTextComponent(value: String) {
 
 
 }
+
+@Composable
+fun HeadingTextComponent(value: String) {
+    Text(
+        text = value,
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 80.dp),
+
+        style = TextStyle(
+            fontSize = 30.sp,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Bold,
+            fontStyle = FontStyle.Normal,
+            textAlign = TextAlign.Center
+
+        ),
+        color = colorResource(id = R.color.colorText),
+
+        )
+
+
+}

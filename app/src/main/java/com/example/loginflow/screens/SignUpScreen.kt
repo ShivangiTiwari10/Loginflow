@@ -45,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.loginflow.R
+import com.example.loginflow.components.HeadingTextComponent
 import com.example.loginflow.components.NormalTextComponent
 
 @Composable
@@ -63,22 +64,9 @@ fun SignUpScreen() {
         ) {
         Column {
             NormalTextComponent(value = stringResource(id = R.string.top_txt))
-            Text(
-                text = stringResource(id = R.string.heading),
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .fillMaxWidth()
-                    .heightIn(min = 80.dp),
 
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontFamily = FontFamily.Serif,
-                    fontWeight = FontWeight.Bold,
-                    fontStyle = FontStyle.Normal,
-                    textAlign = TextAlign.Center
+            HeadingTextComponent(value = stringResource(id = R.string.heading))
 
-                ),
-            )
             OutlinedTextField(
                 value = text,
                 onValueChange = { text = it },
