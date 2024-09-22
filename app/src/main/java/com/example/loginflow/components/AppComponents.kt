@@ -18,6 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -75,7 +77,7 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTextField(labelValue: String) {
+fun MyTextField(labelValue: String,painterResource:Painter) {
     var textValue by remember { mutableStateOf("") }
     OutlinedTextField(
         value = textValue,
@@ -91,12 +93,12 @@ fun MyTextField(labelValue: String) {
             .fillMaxWidth()
             .clip(componentShape.small),
 
-        label = { Text(text = "First Name") },
+        label = { Text(text = labelValue) },
         keyboardOptions = KeyboardOptions.Default,
         leadingIcon = {
             Icon(
-                imageVector = Icons.Outlined.AccountCircle,
-                contentDescription = "emailIcon"
+                painter = painterResource,
+                contentDescription = ""
             )
         },
 
