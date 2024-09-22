@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -174,8 +173,7 @@ fun CheckboxComponent(value: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(56.dp)
-            .padding(16.dp),
+            ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         val checkedState = remember {
@@ -184,9 +182,40 @@ fun CheckboxComponent(value: String) {
         Checkbox(
             checked = checkedState.value,
             onCheckedChange = { checkedState.value != checkedState.value })
-        NormalTextComponent(value)
+        ClikableTextComponent(value = value)
 
     }
 
 }
 
+
+@Composable
+fun ClikableTextComponent(value: String) {
+    val initialTxt = "By continuing you accept"
+    val privasyPolicyTxt = "Privacy Policy"
+
+    val andTxt = " and "
+    val termandConditiontxt = "Term of use"
+
+
+    val annotatedString = buildAnnotatedString {
+        append(initialTxt)
+        withStyle(style = SpanStyle(color = Primary)) {
+            pushStringAnnotation(tag = privasyPolicyTxt, annotation = privasyPolicyTxt)
+            append(privasyPolicyTxt)
+        }
+        append(andTxt)
+        withStyle(style = SpanStyle(color = Primary)) {
+            pushStringAnnotation(tag = termandConditiontxt, annotation = termandConditiontxt)
+            append(termandConditiontxt)
+
+        }
+    }
+    ClickableText(text = annotatedString, onClick = { offset ->
+        annotatedString.getStringAnnotations(offset, offset).firstOrNull()?.also { span ->
+            Log.d("ClickableTextComponent", "{$span}")
+        }
+
+    })
+
+}
