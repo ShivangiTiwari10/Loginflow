@@ -1,9 +1,11 @@
 package com.example.loginflow.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -26,7 +28,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -34,6 +38,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.loginflow.R
@@ -109,9 +114,7 @@ fun MyTextField(labelValue: String, painterResource: Painter) {
                 contentDescription = ""
             )
         },
-
-
-        )
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -168,15 +171,22 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
 
 @Composable
 fun CheckboxComponent(value: String) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .heightIn(56.dp)
-        .padding(16.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(56.dp)
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
-        ) {
+    ) {
+        val checkedState = remember {
+            mutableStateOf<Boolean>(false)
+        }
+        Checkbox(
+            checked = checkedState.value,
+            onCheckedChange = { checkedState.value != checkedState.value })
+        NormalTextComponent(value)
 
-        Checkbox(checked = false, onCheckedChange = null)
-        Text(text = stringResource(id = R.string.description), fontSize = 15.sp)
     }
 
 }
+

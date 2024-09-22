@@ -2,14 +2,12 @@ package com.example.loginflow.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,8 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.loginflow.R
+import com.example.loginflow.components.CheckboxComponent
 import com.example.loginflow.components.HeadingTextComponent
 import com.example.loginflow.components.MyTextField
 import com.example.loginflow.components.NormalTextComponent
@@ -59,10 +57,7 @@ fun SignUpScreen() {
                 painterResource = painterResource(id = R.drawable.lock)
             )
 
-            Row(modifier = Modifier.padding(10.dp)) {
-                Checkbox(checked = false, onCheckedChange = null)
-                Text(text = stringResource(id = R.string.description), fontSize = 15.sp)
-            }
+            CheckboxComponent(value = stringResource(id = R.string.description))
 
             Button(
                 onClick = { /*TODO*/ }, modifier = Modifier
@@ -75,7 +70,7 @@ fun SignUpScreen() {
                 Text("Register")
             }
 
-            NormalTextComponent(value = stringResource(id = R.string.last_text))
+            NormalTextComponent(value = stringResource(id = R.string.last_text) )
         }
 
     }
