@@ -5,9 +5,11 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -19,12 +21,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -77,7 +81,7 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTextField(labelValue: String,painterResource:Painter) {
+fun MyTextField(labelValue: String, painterResource: Painter) {
     var textValue by remember { mutableStateOf("") }
     OutlinedTextField(
         value = textValue,
@@ -102,5 +106,59 @@ fun MyTextField(labelValue: String,painterResource:Painter) {
             )
         },
 
+
+        )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
+    var password by remember { mutableStateOf("") }
+    var passwordVisible by remember {
+        mutableStateOf(false)
+    }
+    OutlinedTextField(
+        value = password,
+        onValueChange = { password = it },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = Primary,
+            focusedLabelColor = Primary,
+            cursorColor = Primary,
+            focusedTextColor = TextColor
+        ),
+        modifier = Modifier
+            .padding(5.dp)
+            .fillMaxWidth()
+            .clip(componentShape.small),
+
+        label = { Text(text = labelValue) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        leadingIcon = {
+            Icon(
+                painter = painterResource,
+                contentDescription = ""
+            )
+        },
+        trailingIcon = {
+
+            val imageIcon = if (passwordVisible) {
+                Icons.Filled.Visibility
+            } else {
+                Icons.Filled.VisibilityOff
+            }
+
+            val description = if (passwordVisible) {
+                "hide password"
+            } else {
+                "show password"
+            }
+            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                Icon(imageVector = imageIcon, contentDescription = description)
+            }
+
+        },
+        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation()
+
     )
 }
+
