@@ -26,6 +26,7 @@ import com.example.loginflow.R
 import com.example.loginflow.components.HeadingTextComponent
 import com.example.loginflow.components.MyTextField
 import com.example.loginflow.components.NormalTextComponent
+import com.example.loginflow.components.PasswordTextFieldComponent
 
 @Composable
 fun SignUpScreen() {
@@ -43,10 +44,20 @@ fun SignUpScreen() {
             HeadingTextComponent(value = stringResource(id = R.string.heading))
 
             Spacer(modifier = Modifier.height(20.dp))
-            MyTextField("First Name", painterResource = painterResource(id = R.drawable.baseline_person_outline_24))
+            MyTextField(
+                "First Name",
+                painterResource = painterResource(id = R.drawable.baseline_person_outline_24)
+            )
             MyTextField("Last Name", painterResource(id = R.drawable.baseline_person_outline_24))
-            MyTextField("Email",painterResource = painterResource(id = R.drawable.baseline_mail_outline_24))
-            MyTextField("Password",painterResource = painterResource(id = R.drawable.lock))
+            MyTextField(
+                "Email",
+                painterResource = painterResource(id = R.drawable.baseline_mail_outline_24)
+            )
+
+            PasswordTextFieldComponent(
+                "Password",
+                painterResource = painterResource(id = R.drawable.lock)
+            )
 
             Row(modifier = Modifier.padding(10.dp)) {
                 Checkbox(checked = false, onCheckedChange = null)
