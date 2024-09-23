@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -35,6 +36,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -47,7 +49,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.loginflow.R
@@ -134,9 +135,10 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
     var passwordVisible by remember {
         mutableStateOf(false)
     }
+    val controller = LocalSoftwareKeyboardController.current
     OutlinedTextField(
         value = password,
-        onValueChange = { password = it },
+        onValueChange = { value -> password = value },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = Primary,
             focusedLabelColor = Primary,
@@ -150,6 +152,7 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
 
         label = { Text(text = labelValue) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        keyboardActions = KeyboardActions(onDone = { controller?.hide() }),
         leadingIcon = {
             Icon(
                 painter = painterResource,
@@ -311,7 +314,7 @@ fun ClikableLoginTextComponent(onTextSelected: (String) -> Unit) {
 
     }
 
-    ClickableText(  modifier = Modifier
+    ClickableText(modifier = Modifier
         .fillMaxWidth()
         .heightIn(min = 40.dp),
 
@@ -324,14 +327,14 @@ fun ClikableLoginTextComponent(onTextSelected: (String) -> Unit) {
 
         ),
         text = annotatedString, onClick = { offset ->
-        annotatedString.getStringAnnotations(offset, offset).firstOrNull()?.also { span ->
+            annotatedString.getStringAnnotations(offset, offset).firstOrNull()?.also { span ->
 
 
-            if (span.item == login) {
+                if (span.item == login) {
 
-                onTextSelected(span.item)
+                    onTextSelected(span.item)
+                }
             }
-        }
 
-    })
+        })
 }
