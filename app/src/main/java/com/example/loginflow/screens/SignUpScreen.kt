@@ -25,6 +25,8 @@ import com.example.loginflow.components.HeadingTextComponent
 import com.example.loginflow.components.MyTextField
 import com.example.loginflow.components.NormalTextComponent
 import com.example.loginflow.components.PasswordTextFieldComponent
+import com.example.loginflow.navigation.PostOfficeAppRouter
+import com.example.loginflow.navigation.Screen
 
 @Composable
 fun SignUpScreen() {
@@ -57,7 +59,11 @@ fun SignUpScreen() {
                 painterResource = painterResource(id = R.drawable.lock)
             )
 
-            CheckboxComponent(value = stringResource(id = R.string.description))
+            CheckboxComponent(value = stringResource(id = R.string.description), onTextSelected = {
+
+                PostOfficeAppRouter.navigateTo(Screen.termAndConditionScren)
+
+            })
 
             Button(
                 onClick = { /*TODO*/ }, modifier = Modifier
@@ -70,7 +76,7 @@ fun SignUpScreen() {
                 Text("Register")
             }
 
-            NormalTextComponent(value = stringResource(id = R.string.last_text) )
+            NormalTextComponent(value = stringResource(id = R.string.last_text))
         }
 
     }
