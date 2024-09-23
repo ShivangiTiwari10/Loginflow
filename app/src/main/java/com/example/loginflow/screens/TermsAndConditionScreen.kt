@@ -12,6 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.loginflow.R
 import com.example.loginflow.components.HeadingTextComponent
+import com.example.loginflow.navigation.PostOfficeAppRouter
+import com.example.loginflow.navigation.Screen
+import com.example.loginflow.navigation.SystemBackButtonHandler
 
 @Composable
 fun TermsAndConditionScreen() {
@@ -23,6 +26,9 @@ fun TermsAndConditionScreen() {
             .padding(16.dp)
     ) {
         HeadingTextComponent(value = stringResource(id = R.string.termscondition_header))
+        SystemBackButtonHandler {
+            PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
+        }
     }
 }
 
