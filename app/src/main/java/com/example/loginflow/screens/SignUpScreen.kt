@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.example.loginflow.R
 import com.example.loginflow.components.ButtonComponent
 import com.example.loginflow.components.CheckboxComponent
+import com.example.loginflow.components.DividerTextComponent
 import com.example.loginflow.components.HeadingTextComponent
 import com.example.loginflow.components.MyTextField
 import com.example.loginflow.components.NormalTextComponent
@@ -65,10 +66,10 @@ fun SignUpScreen() {
                 PostOfficeAppRouter.navigateTo(Screen.termAndConditionScren)
 
             })
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(40.dp))
             ButtonComponent(value = stringResource(id = R.string.register))
 
-            NormalTextComponent(value = stringResource(id = R.string.last_text))
+            DividerTextComponent()
         }
 
     }

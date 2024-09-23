@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -268,4 +269,28 @@ fun ButtonComponent(value: String) {
 
 }
 
+
+@Composable
+fun DividerTextComponent() {
+
+    Row(modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically) {
+
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            thickness = 1.dp,
+            color = colorResource(id = R.color.colorGrey)
+        )
+        Text(modifier = Modifier.padding(8.dp), text = "or", fontSize = 18.sp , color = TextColor)
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            thickness = 1.dp,
+            color = colorResource(id = R.color.colorGrey)
+        )
+    }
+}
 
