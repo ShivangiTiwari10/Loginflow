@@ -65,7 +65,7 @@ fun SignUpScreen() {
                 PostOfficeAppRouter.navigateTo(Screen.termAndConditionScren)
 
             })
-
+            Spacer(modifier = Modifier.height(80.dp))
             ButtonComponent(value = stringResource(id = R.string.register))
 
             NormalTextComponent(value = stringResource(id = R.string.last_text))
