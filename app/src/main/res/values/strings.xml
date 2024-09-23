@@ -6,5 +6,6 @@
     <string name="last_text">Already have an account? Login</string>
     <string name="termscondition_header">Term of Use</string>
     <string name="register">Register</string>
+    <string name="goToLogin">Already have an Account? Login</string>
 
 </resources>

@@ -273,8 +273,10 @@ fun ButtonComponent(value: String) {
 @Composable
 fun DividerTextComponent() {
 
-    Row(modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
 
         Divider(
             modifier = Modifier
@@ -283,7 +285,7 @@ fun DividerTextComponent() {
             thickness = 1.dp,
             color = colorResource(id = R.color.colorGrey)
         )
-        Text(modifier = Modifier.padding(8.dp), text = "or", fontSize = 18.sp , color = TextColor)
+        Text(modifier = Modifier.padding(8.dp), text = "or", fontSize = 18.sp, color = TextColor)
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
@@ -294,3 +296,42 @@ fun DividerTextComponent() {
     }
 }
 
+
+@Composable
+fun ClikableLoginTextComponent(onTextSelected: (String) -> Unit) {
+    val initialtxt = "Already have an Account?"
+    val login = "Login"
+
+    val annotatedString = buildAnnotatedString {
+        append(initialtxt)
+        withStyle(style = SpanStyle(color = Primary)) {
+            pushStringAnnotation(tag = login, annotation = login)
+            append(login)
+        }
+
+    }
+
+    ClickableText(  modifier = Modifier
+        .fillMaxWidth()
+        .heightIn(min = 40.dp),
+
+        style = TextStyle(
+            fontSize = 21.sp,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Normal,
+            fontStyle = FontStyle.Normal,
+            textAlign = TextAlign.Center
+
+        ),
+        text = annotatedString, onClick = { offset ->
+        annotatedString.getStringAnnotations(offset, offset).firstOrNull()?.also { span ->
+
+
+            if (span.item == login) {
+
+                onTextSelected(span.item)
+            }
+        }
+
+    })
+}
