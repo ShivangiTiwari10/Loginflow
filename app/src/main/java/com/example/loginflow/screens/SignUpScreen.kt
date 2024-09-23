@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.loginflow.R
+import com.example.loginflow.components.ButtonComponent
 import com.example.loginflow.components.CheckboxComponent
 import com.example.loginflow.components.HeadingTextComponent
 import com.example.loginflow.components.MyTextField
@@ -65,16 +66,7 @@ fun SignUpScreen() {
 
             })
 
-            Button(
-                onClick = { /*TODO*/ }, modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .fillMaxWidth()
-                    .padding(10.dp)
-
-            ) {
-                colorResource(id = R.color.colorSecondary)
-                Text("Register")
-            }
+            ButtonComponent(value = stringResource(id = R.string.register))
 
             NormalTextComponent(value = stringResource(id = R.string.last_text))
         }
