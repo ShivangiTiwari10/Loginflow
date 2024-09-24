@@ -44,6 +44,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -103,6 +104,7 @@ fun HeadingTextComponent(value: String) {
 @Composable
 fun MyTextField(labelValue: String, painterResource: Painter) {
     var textValue by remember { mutableStateOf("") }
+
     OutlinedTextField(
         value = textValue,
         onValueChange = { textValue = it },
@@ -112,13 +114,17 @@ fun MyTextField(labelValue: String, painterResource: Painter) {
             cursorColor = Primary,
             focusedTextColor = TextColor
         ),
+        singleLine = true,
         modifier = Modifier
             .padding(5.dp)
             .fillMaxWidth()
             .clip(componentShape.small),
 
         label = { Text(text = labelValue) },
-        keyboardOptions = KeyboardOptions.Default,
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next,
+            keyboardType = KeyboardType.Email
+        ),
         leadingIcon = {
             Icon(
                 painter = painterResource,
@@ -139,6 +145,7 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
     OutlinedTextField(
         value = password,
         onValueChange = { value -> password = value },
+        singleLine = true,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = Primary,
             focusedLabelColor = Primary,
