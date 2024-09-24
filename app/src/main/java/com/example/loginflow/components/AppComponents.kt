@@ -34,11 +34,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -148,7 +150,8 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
     var passwordVisible by remember {
         mutableStateOf(false)
     }
-    val controller = LocalSoftwareKeyboardController.current
+    val controller: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current
+    val focusManager: FocusManager = LocalFocusManager.current
     OutlinedTextField(
         value = password,
         onValueChange = { value -> password = value },
@@ -166,7 +169,13 @@ fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter) {
 
         label = { Text(text = labelValue) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        keyboardActions = KeyboardActions(onDone = { controller?.hide() }),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                controller?.hide()
+                focusManager.clearFocus()
+            },
+
+            ),
         leadingIcon = {
             Icon(
                 painter = painterResource,
