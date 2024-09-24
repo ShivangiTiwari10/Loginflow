@@ -53,6 +53,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -332,9 +333,10 @@ fun DividerTextComponent() {
 
 
 @Composable
-fun ClikableLoginTextComponent(onTextSelected: (String) -> Unit) {
-    val initialtxt = "Already have an Account?"
-    val login = "Login"
+fun ClikableLoginTextComponent(TryintoLogin: Boolean = true, onTextSelected: (String) -> Unit) {
+    val initialtxt = if (TryintoLogin) "Already have an Account?" else "Don't have an Account yet?"
+    val login = if (TryintoLogin) "Login" else "Register"
+
 
     val annotatedString = buildAnnotatedString {
         append(initialtxt)
@@ -369,3 +371,26 @@ fun ClikableLoginTextComponent(onTextSelected: (String) -> Unit) {
 
         })
 }
+
+@Composable
+fun underLinedTextComponent(value: String) {
+    Text(
+        text = value,
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 40.dp),
+
+        style = TextStyle(
+            fontSize = 18.sp,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Normal,
+            fontStyle = FontStyle.Normal,
+            textAlign = TextAlign.Center
+
+        ),
+        color = colorResource(id = R.color.colorGrey),
+        textAlign = TextAlign.Center,
+        textDecoration = TextDecoration.Underline
+    )
+}
+

@@ -78,7 +78,7 @@ fun SignUpScreen() {
             ButtonComponent(value = stringResource(id = R.string.register))
 
             DividerTextComponent()
-            ClikableLoginTextComponent(onTextSelected = {
+            ClikableLoginTextComponent(TryintoLogin = true ,onTextSelected = {
 
             })
         }
