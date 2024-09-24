@@ -7,5 +7,9 @@
     <string name="termscondition_header">Term of Use</string>
     <string name="register">Register</string>
     <string name="goToLogin">Already have an Account? Login</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="login">Login</string>
+    <string name="forgotPassword">Forgot Your Password?</string>
+
 
 </resources>
