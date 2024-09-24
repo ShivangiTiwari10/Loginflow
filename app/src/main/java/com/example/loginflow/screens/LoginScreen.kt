@@ -25,6 +25,7 @@ import com.example.loginflow.components.PasswordTextFieldComponent
 import com.example.loginflow.components.underLinedTextComponent
 import com.example.loginflow.navigation.PostOfficeAppRouter
 import com.example.loginflow.navigation.Screen
+import com.example.loginflow.navigation.SystemBackButtonHandler
 
 @Composable
 fun LoginScreen() {
@@ -70,7 +71,9 @@ fun LoginScreen() {
 
         }
 
-
+        SystemBackButtonHandler {
+            PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
+        }
     }
 }
 
