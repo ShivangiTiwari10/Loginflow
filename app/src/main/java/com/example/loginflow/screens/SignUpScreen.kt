@@ -69,7 +69,7 @@ fun SignUpScreen() {
 
             CheckboxComponent(value = stringResource(id = R.string.description), onTextSelected = {
 
-                PostOfficeAppRouter.navigateTo(Screen.termAndConditionScren)
+                PostOfficeAppRouter.navigateTo(Screen.TermAndConditionScren)
 
             }
             , onCheckedChange = {}
@@ -79,7 +79,7 @@ fun SignUpScreen() {
 
             DividerTextComponent()
             ClikableLoginTextComponent(TryintoLogin = true ,onTextSelected = {
-
+                PostOfficeAppRouter.navigateTo(Screen.LoginScreen)
             })
         }
 

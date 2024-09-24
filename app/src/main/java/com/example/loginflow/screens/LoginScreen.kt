@@ -23,6 +23,8 @@ import com.example.loginflow.components.MyTextField
 import com.example.loginflow.components.NormalTextComponent
 import com.example.loginflow.components.PasswordTextFieldComponent
 import com.example.loginflow.components.underLinedTextComponent
+import com.example.loginflow.navigation.PostOfficeAppRouter
+import com.example.loginflow.navigation.Screen
 
 @Composable
 fun LoginScreen() {
@@ -61,7 +63,10 @@ fun LoginScreen() {
 
             Spacer(modifier = Modifier.height(20.dp))
             DividerTextComponent()
-            ClikableLoginTextComponent(TryintoLogin = false,onTextSelected ={} )
+            ClikableLoginTextComponent(TryintoLogin = false,onTextSelected ={
+
+                PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
+            } )
 
         }
 
