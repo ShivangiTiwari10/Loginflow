@@ -33,9 +33,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.SpanStyle
@@ -105,6 +107,8 @@ fun HeadingTextComponent(value: String) {
 fun MyTextField(labelValue: String, painterResource: Painter) {
     var textValue by remember { mutableStateOf("") }
 
+    val focusManager = LocalFocusManager.current
+
     OutlinedTextField(
         value = textValue,
         onValueChange = { textValue = it },
@@ -124,6 +128,9 @@ fun MyTextField(labelValue: String, painterResource: Painter) {
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
             keyboardType = KeyboardType.Email
+        ),
+        keyboardActions = KeyboardActions(
+            onNext = { focusManager.moveFocus(FocusDirection.Down) }
         ),
         leadingIcon = {
             Icon(
